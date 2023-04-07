@@ -2,8 +2,11 @@ package ro.pub.cs.systems.eim.practicaltest01var07;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +21,8 @@ public class PracticalTest01Var07MainActivity extends AppCompatActivity {
     private Button set_button;
 
     private ButtonClickListener buttonClickListener = new ButtonClickListener();
+    private int serviceStatus = Constants.SERVICE_STOPPED;
+
     private class ButtonClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -39,11 +44,26 @@ public class PracticalTest01Var07MainActivity extends AppCompatActivity {
                         intent.putExtra("bottom_right", bottom_right);
                         startActivityForResult(intent, 1);
                     } else {
-                        // display message with toast
                         Toast.makeText(getApplicationContext(), "Toate campurile trebuie completate cu numere!", Toast.LENGTH_LONG).show();
                     }
                     break;
             }
+
+            Intent intent = new Intent(getApplicationContext(), PracticalTest01Var07Service.class);
+//        intent.putExtra("top_left", Integer.parseInt(edit_text_top_left.getText().toString()));
+//        intent.putExtra("top_right", Integer.parseInt(edit_text_top_right.getText().toString()));
+//        intent.putExtra("bottom_left", Integer.parseInt(edit_text_bottom_left.getText().toString()));
+//        intent.putExtra("bottom_right", Integer.parseInt(edit_text_bottom_right.getText().toString()));
+            getApplicationContext().startService(intent);
+            serviceStatus = Constants.SERVICE_STARTED;
+        }
+    }
+
+    private MessageBroadcastReceiver messageBroadcastReceiver = new MessageBroadcastReceiver();
+    private class MessageBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(Constants.BROADCAST_RECEIVER_TAG, intent.getStringExtra(Constants.BROADCAST_RECEIVER_EXTRA));
         }
     }
 
@@ -73,6 +93,13 @@ public class PracticalTest01Var07MainActivity extends AppCompatActivity {
                 edit_text_bottom_right.setText(savedInstanceState.getString("edit_text_bottom_right"));
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        Intent intent = new Intent(getApplicationContext(), PracticalTest01Var07Service.class);
+        getApplicationContext().stopService(intent);
+        super.onDestroy();
     }
 
     @Override
