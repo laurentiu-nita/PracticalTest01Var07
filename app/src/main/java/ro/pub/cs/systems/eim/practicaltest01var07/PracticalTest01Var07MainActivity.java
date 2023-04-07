@@ -58,9 +58,48 @@ public class PracticalTest01Var07MainActivity extends AppCompatActivity {
         edit_text_bottom_right = (EditText)findViewById(R.id.edit_text_bottom_right);
         set_button = (Button)findViewById(R.id.set_button);
         set_button.setOnClickListener(buttonClickListener);
+
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey("edit_text_top_left")) {
+                edit_text_top_left.setText(savedInstanceState.getString("edit_text_top_left"));
+            }
+            if (savedInstanceState.containsKey("edit_text_top_right")) {
+                edit_text_top_right.setText(savedInstanceState.getString("edit_text_top_right"));
+            }
+            if (savedInstanceState.containsKey("edit_text_bottom_left")) {
+                edit_text_bottom_left.setText(savedInstanceState.getString("edit_text_bottom_left"));
+            }
+            if (savedInstanceState.containsKey("edit_text_bottom_right")) {
+                edit_text_bottom_right.setText(savedInstanceState.getString("edit_text_bottom_right"));
+            }
+        }
     }
 
-    
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("edit_text_top_left", edit_text_top_left.getText().toString());
+        savedInstanceState.putString("edit_text_top_right", edit_text_top_right.getText().toString());
+        savedInstanceState.putString("edit_text_bottom_left", edit_text_bottom_left.getText().toString());
+        savedInstanceState.putString("edit_text_bottom_right", edit_text_bottom_right.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState.containsKey("edit_text_top_left")) {
+            edit_text_top_left.setText(savedInstanceState.getString("edit_text_top_left"));
+        }
+        if (savedInstanceState.containsKey("edit_text_top_right")) {
+            edit_text_top_right.setText(savedInstanceState.getString("edit_text_top_right"));
+        }
+        if (savedInstanceState.containsKey("edit_text_bottom_left")) {
+            edit_text_bottom_left.setText(savedInstanceState.getString("edit_text_bottom_left"));
+        }
+        if (savedInstanceState.containsKey("edit_text_bottom_right")) {
+            edit_text_bottom_right.setText(savedInstanceState.getString("edit_text_bottom_right"));
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
