@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="ro.pub.cs.systems.eim.practicaltest01var07.PracticalTest01Var07MainActivity">
+    tools:context="ro.pub.cs.systems.eim.practicaltest01var07.PracticalTest01Var07SecondaryActivity">
 
     <GridLayout
         android:layout_width="match_parent"
@@ -21,6 +21,7 @@
             android:layout_row="0"
             android:textAlignment="center"
             android:ems="10"
+            android:enabled="false"
             android:inputType="number" />
 
         <EditText
@@ -31,6 +32,7 @@
             android:layout_row="0"
             android:textAlignment="center"
             android:ems="10"
+            android:enabled="false"
             android:inputType="number" />
 
         <EditText
@@ -41,6 +43,7 @@
             android:layout_row="1"
             android:textAlignment="center"
             android:ems="10"
+            android:enabled="false"
             android:inputType="number" />
 
         <EditText
@@ -51,14 +54,28 @@
             android:layout_row="1"
             android:textAlignment="center"
             android:ems="10"
+            android:enabled="false"
             android:inputType="number" />
     </GridLayout>
 
-    <Button
-        android:id="@+id/set_button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/set_button" />
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/sum_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/sum_button" />
+
+        <Button
+            android:id="@+id/product_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/product_button" />
+    </LinearLayout>
 
 </LinearLayout>
