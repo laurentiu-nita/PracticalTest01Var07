@@ -1,2 +1,1 @@
-# PracticalTest01Var07
-Colocviu 1 EIM
+# Nita Laurentiu-Mihai, 342C4
